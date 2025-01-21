@@ -72,24 +72,24 @@ $table_prefix = 're_';
 if ( ! defined( 'WP_DEBUG' ) ) {
 	switch ( $_ENV['PANTHEON_ENVIRONMENT'] ?? 'local' ) {
 		case 'dev':
-			Config::define('WP_DEBUG', true);
-			Config::define('WP_DEBUG_LOG', true);
-			Config::define('WP_DEBUG_DISPLAY', false); // Keep this at false until test/live environments work.
+			define('WP_DEBUG', true);
+			define('WP_DEBUG_LOG', true);
+			define('WP_DEBUG_DISPLAY', false); // Keep this at false until test/live environments work.
 			break;
 		case 'test':
-			Config::define('WP_DEBUG', true);
-			Config::define('WP_DEBUG_LOG', true);
-			Config::define('WP_DEBUG_DISPLAY', false);
+			define('WP_DEBUG', true);
+			define('WP_DEBUG_LOG', true);
+			define('WP_DEBUG_DISPLAY', false);
 			break;
 		case 'live':
-			Config::define('WP_DEBUG', false);
-			Config::define('WP_DEBUG_LOG', false);
-			Config::define('WP_DEBUG_DISPLAY', false);
+			define('WP_DEBUG', false);
+			define('WP_DEBUG_LOG', false);
+			define('WP_DEBUG_DISPLAY', false);
 			break;
 		default: // local or unset
-			Config::define('WP_DEBUG', true);
-			Config::define('WP_DEBUG_LOG', true);
-			Config::define('WP_DEBUG_DISPLAY', true);
+			define('WP_DEBUG', true);
+			define('WP_DEBUG_LOG', true);
+			define('WP_DEBUG_DISPLAY', true);
 			break;
 	}
 }
