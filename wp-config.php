@@ -70,7 +70,21 @@ $table_prefix = 're_';
  * "true" in dev, but false in test and live.
  */
 if ( ! defined( 'WP_DEBUG' ) ) {
-	define('WP_DEBUG', false);
+	switch( $_ENV['PANTHEON_ENVIRONMENT'] ) {
+		case 'dev':
+		case 'lando':
+			define( 'WP_DEBUG', true );
+			define( 'WP_DEBUG_DISPLAY', true );
+			define( 'SCRIPT_DEBUG', true );
+		case 'test':
+			define( 'WP_DEBUG', true );
+			define( 'WP_DEBUG_DISPLAY', false );
+			define( 'SCRIPT_DEBUG', false );
+		default:
+			define( 'WP_DEBUG', false );
+			define( 'WP_DEBUG_DISPLAY', false );
+			define( 'SCRIPT_DEBUG', false );
+	}
 }
 
 /* That's all, stop editing! Happy Pressing. */
