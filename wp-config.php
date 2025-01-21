@@ -87,6 +87,9 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 	}
 }
 
+define( 'COOKIE_DOMAIN', PANTHEON_HOSTNAME );
+define( 'COOKIEPATH', '/' );
+
 /* That's all, stop editing! Happy Pressing. */
 
 
