@@ -70,20 +70,27 @@ $table_prefix = 're_';
  * "true" in dev, but false in test and live.
  */
 if ( ! defined( 'WP_DEBUG' ) ) {
-	switch( $_ENV['PANTHEON_ENVIRONMENT'] ) {
+	switch ( $_ENV['PANTHEON_ENVIRONMENT'] ?? 'local' ) {
 		case 'dev':
-		case 'lando':
-			define( 'WP_DEBUG', true );
-			define( 'WP_DEBUG_DISPLAY', true );
-			define( 'SCRIPT_DEBUG', true );
+			Config::define('WP_DEBUG', true);
+			Config::define('WP_DEBUG_LOG', true);
+			Config::define('WP_DEBUG_DISPLAY', false); // Keep this at false until test/live environments work.
+			break;
 		case 'test':
-			define( 'WP_DEBUG', true );
-			define( 'WP_DEBUG_DISPLAY', false );
-			define( 'SCRIPT_DEBUG', false );
-		default:
-			define( 'WP_DEBUG', false );
-			define( 'WP_DEBUG_DISPLAY', false );
-			define( 'SCRIPT_DEBUG', false );
+			Config::define('WP_DEBUG', true);
+			Config::define('WP_DEBUG_LOG', true);
+			Config::define('WP_DEBUG_DISPLAY', false);
+			break;
+		case 'live':
+			Config::define('WP_DEBUG', false);
+			Config::define('WP_DEBUG_LOG', false);
+			Config::define('WP_DEBUG_DISPLAY', false);
+			break;
+		default: // local or unset
+			Config::define('WP_DEBUG', true);
+			Config::define('WP_DEBUG_LOG', true);
+			Config::define('WP_DEBUG_DISPLAY', true);
+			break;
 	}
 }
 
