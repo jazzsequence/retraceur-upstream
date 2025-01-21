@@ -13,9 +13,6 @@ built
 # htaccess
 .htaccess
 
-# Config file
-wp-config.php
-
 # Uploads
 /wp-content/uploads/
 
